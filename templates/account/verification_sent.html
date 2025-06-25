@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load allauth %}
+{% block conteudo %}
+<div class="password-reset">
+    <div class="pgReset">
+        <h1>{% trans "Verifique a Caixa de Entrada do seu E-mail" %}</h1>
+        <p>
+            {% blocktrans %}
+                Enviamos um e-mail para você com um link de verificação. Siga o link fornecido para finalizar o processo de cadastro. 
+                Se você não encontrar o e-mail de verificação na sua caixa de entrada principal, verifique a pasta de spam. 
+                Por favor, entre em contato conosco se não receber o e-mail de verificação dentro de alguns minutos.<a href="mailto:sampi-pb@utfpr.edu.br?subject=Problemas%20com%20Verificacao%20de%20Cadastro&body=Descreva%20seu%20Problema"> Entrar em contato via email </a>
+            {% endblocktrans %}
+        </p>
+    </div>
+</div>
+{% endblock conteudo %}

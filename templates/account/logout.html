@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% load allauth i18n %}
+{% block conteudo %}
+<div class="logout">
+    <div class="img-logout">
+        <img class="logoCentral" src="{% static 'imagens/logoSampi.png' %}" alt="Logo SAMPI" width="450px">
+    </div>
+    <div class="pgLogout">
+        <h1>{% trans "Já vai embora? Você tem certeza de que deseja sair?" %}</h1>
+        {% comment %} <p>{% trans 'Você tem certeza de que deseja sair?' %}</p> {% endcomment %}
+        {% url 'account_logout' as action_url %}
+        <form method="POST" action="{{ action_url }}">
+            {% csrf_token %}
+            {{ redirect_field }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary botao">{% trans "Sair" %}</button>
+            </div>
+        </form>
+        <a href="{% url 'account_login' %}" class="btn btn-link">{% trans "Voltar para o site" %}</a>
+    </div>
+</div>
+{% endblock %}

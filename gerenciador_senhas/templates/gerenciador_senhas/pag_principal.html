@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block conteudo %}
+<div>
+    <title>Senhas do {{user.name}}</title>
+</div>
+<div>
+    <label for="add_senhas">Adicione uma nova senha ao gerenciador:</label>
+    <form id="add_senhas" name="add_senhas">
+        {% csrf_token %}
+        <div class="block_senha">
+            <label for="apps_url">Aplicativo ou url:</label>
+            <input type="apps_url" id="apps_url" name="apps_url">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario">
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha">
+        </div>
+    </form>
+    {% for senha_salva in senhas_salvas %}
+        <div class="block_senha">
+            <label for="apps_url">Aplicativo ou url:</label>
+            <input type="apps_url" id="apps_url" name="apps_url" value="{{senha_salva.app_url}}" readonly>
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="usuario" value="{{senha_salva.usuario}}" readonly>
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" value="{{senha_salva.senha}}" readonly>
+        </div>
+    {% endfor %}
+</div>
+{%endblock%}

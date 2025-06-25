@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load account %}
+{% load allauth %}
+
+{% block conteudo %}
+<div class="password-reset">
+    <div class="pgReset">
+        <h1>{% trans "Confirmar Endereço de E-mail" %}</h1>
+        {% if confirmation %}
+            {% user_display confirmation.email_address.user as user_display %}
+            {% if can_confirm %}
+                <p>
+                    {% blocktrans with confirmation.email_address.email as email %}
+                        Por favor, confirme que <a href="mailto:{{ email }}">{{ email }}</a> é o endereço de e-mail para o usuário {{ user_display }}.
+                    {% endblocktrans %}
+                </p>
+                {% url 'account_confirm_email' confirmation.key as action_url %}
+                <form method="post" action="{{ action_url }}">
+                    {% csrf_token %}
+                    {{ redirect_field }}
+                    <button type="submit" class="btn btn-primary">
+                        {% trans 'Confirmar' %}
+                    </button>
+                </form>
+            {% else %}
+                <p>
+                    {% blocktrans %}Não foi possível confirmar {{ email }} porque ele já foi confirmado por uma conta diferente.{% endblocktrans %}
+                </p>
+            {% endif %}
+        {% else %}
+            {% url 'account_email' as email_url %}
+            <p>
+                {% blocktrans %}Este link de confirmação de e-mail expirou ou é inválido. Por favor, <a href="{{ email_url }}">faça uma nova solicitação de confirmação de e-mail</a>.{% endblocktrans %}
+            </p>
+        {% endif %}
+    </div>
+</div>
+{% endblock conteudo %}

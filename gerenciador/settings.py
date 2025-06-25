@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from decouple import config
+from datetime import timedelta #para definir tempo de logout por inatividade
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-)484mhgy0uyw(lz&@73ygf-p&ygj$1xu(0)_55-ex*xk^e&$-r'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +40,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'usuario.apps.UsuarioConfig',
+    'gerenciador_senhas.apps.GerenciadorSenhasConfig',
+     
+    #configuracoe especificas do allauth
+    'allauth',
+    'allauth.account',
+    
+    #para logout por tempo
+    'session_security',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,14 +61,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware', #tive q add isso pro allauth
+    'session_security.middleware.SessionSecurityMiddleware', #para logout por tempo
 ]
+
+DEFAULT_FROM_EMAIL = 'brunosilva.2022@alunos.utfpr.edu.br'  # E-mail do remetente
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # e-mail 
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # Senha email
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')            # Ativa a criptografia TLS
+EMAIL_HOST = config('EMAIL_HOST')     # Servidor SMTP usado
+EMAIL_PORT = config('EMAIL_PORT')                 # Porta para TLS (recomendado)
 
 ROOT_URLCONF = 'gerenciador.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,9 +100,25 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+        
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': config('BD_NAME'),
+        # 'USER': config('BD_USER'),
+        # 'PASSWORD': config('BD_PASSWORD'),
+        # 'HOST': config('BD_HOST'),
+        # 'PORT': config('BD_PORT'),
     }
 }
 
+AUTHENTICATION_BACKENDS = [
+    
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by email
+    'allauth.account.auth_backends.AuthenticationBackend',
+    
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -102,12 +142,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
+
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
+USE_L10N = True
 USE_TZ = True
 
 
@@ -115,8 +156,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/pagina_principal/' 
+ACCOUNT_SIGNUP_REDIRECT_URL = '/pagina_principal/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/pagina_principal/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/usuarios/login/'
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = True
+
+#config logout por inatividade
+SESSION_SECURITY_EXPIRE_AFTER = 1800 #30 min  
+SESSION_SECURITY_WARN_AFTER = 1500  # 15 minutos, avisa antes do logout
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SECURITY_REDIRECT_URL = "/usuarios/login/"  # Página para onde o usuário será redirecionado
