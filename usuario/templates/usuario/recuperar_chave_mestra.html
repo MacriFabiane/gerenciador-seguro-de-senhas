@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{%block conteudo %}
+
+    <h2>Recuperar Chave Mestra</h2>
+
+    <p>Digite sua recovery key para recuperar o acesso à sua chave mestra.</p>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="recovery_key">Recovery Key:</label>
+        <input type="text" name="recovery_key" id="recovery_key" required>
+        <button type="submit">Recuperar</button>
+    </form>
+
+    {% comment %} isso seria pra voltar pra pagina anterior ou seja tinha qie ser a exigir chave mestra{% endcomment %}
+    {% comment %} <p><a href="{% url 'login' %}">Voltar ao login</a></p>  {% endcomment %}
+
+{%endblock%}

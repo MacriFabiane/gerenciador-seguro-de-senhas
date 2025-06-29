@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{%block conteudo %}
+
+    <h2>Definir Nova Chave Mestra</h2>
+
+    <p>Agora que você validou sua recovery key, defina uma nova chave mestra para proteger seus dados criptografados.</p>
+
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nova_chave">Nova Chave Mestra:</label>
+        <input type="password" name="nova_chave" id="nova_chave" required>
+
+        <label for="confirmacao">Confirme a Nova Chave Mestra:</label>
+        <input type="password" name="confirmacao" id="confirmacao" required>
+
+        <button type="submit">Salvar Nova Chave</button>
+    </form>
+
+{% endblock %}
