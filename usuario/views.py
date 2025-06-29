@@ -11,10 +11,6 @@ from django.utils.encoding import force_bytes, force_str #necessário pro uid
 from django.urls import reverse
 from django.template.loader import render_to_string
 from allauth.account.views import ConfirmEmailView
-
-def indexView(request):
-    return render(request, 'usuario/index.html')
-
 class CustomConfirmEmailView(ConfirmEmailView):
     def get_redirect_url(self):
         # Modifique para a URL desejada
@@ -23,4 +19,16 @@ class CustomConfirmEmailView(ConfirmEmailView):
 def logoutView(request):
     logout(request)
     return redirect('loginView')
+
+def chaveRestauracao(request):
+    return render(request, 'usuario/chave_restauracao.html')
+
+def exigirChaveMestra(request):
+    return render(request, 'usuario/exigir_chave_mestra.html')
+
+def recuperarChaveMestra(request):
+    return render(request, 'usuario/recuperar_chave_mestra.html')
+
+def redefinirChaveMestra(request):
+    return render(request, 'usuario/redefinir_chave_mestra.html')
 

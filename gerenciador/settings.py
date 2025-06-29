@@ -98,15 +98,12 @@ WSGI_APPLICATION = 'gerenciador.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-        
-        # 'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': config('BD_NAME'),
-        # 'USER': config('BD_USER'),
-        # 'PASSWORD': config('BD_PASSWORD'),
-        # 'HOST': config('BD_HOST'),
-        # 'PORT': config('BD_PORT'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('BD_NAME'),
+        'USER': config('BD_USER'),
+        'PASSWORD': config('BD_PASSWORD'),
+        'HOST': config('BD_HOST'),
+        'PORT': config('BD_PORT'),
     }
 }
 
@@ -164,10 +161,10 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/pagina_principal/' 
-ACCOUNT_SIGNUP_REDIRECT_URL = '/pagina_principal/'
+LOGIN_REDIRECT_URL = '/usuarios/chave_mestra/' 
+ACCOUNT_SIGNUP_REDIRECT_URL = '/usuarios/login/'
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/pagina_principal/'
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/usuarios/login/'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/usuarios/chave_restauracao'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 ACCOUNT_EMAIL_REQUIRED = True

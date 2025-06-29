@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{%block conteudo %}
+
+<h2>Sua Recovery Key foi gerada</h2>
+<p>Guarde esta chave com segurança. Ela será <strong>exibida apenas uma vez</strong>!</p>
+
+<pre>{{ recovery_key }}</pre>
+
+<p><strong>Importante:</strong> Se você perder esta recovery key, não poderá recuperar suas senhas caso esqueça sua chave mestra.</p>
+
+<form method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    <button type="submit">Entendi, continuar</button>
+</form>
+
+{% endblock %}
