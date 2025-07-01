@@ -7,7 +7,7 @@
 </div>
 <div>
     <label for="add_senhas">Adicione uma nova senha ao gerenciador:</label>
-    <form id="add_senhas" name="add_senhas">
+    <form id="add_senhas" name="add_senhas" method="POST">
         {% csrf_token %}
         <div class="block_senha">
             <label for="apps_url">Aplicativo ou url:</label>
@@ -16,12 +16,13 @@
             <input type="text" id="usuario" name="usuario">
             <label for="senha">Senha:</label>
             <input type="password" id="senha" name="senha">
+            <button type="submit" class="btn btn-primary mt-2" id="salvar_senha">Salvar senha</button>
         </div>
     </form>
     {% for senha_salva in senhas_salvas %}
         <div class="block_senha">
             <label for="apps_url">Aplicativo ou url:</label>
-            <input type="apps_url" id="apps_url" name="apps_url" value="{{senha_salva.app_url}}" readonly>
+            <input type="apps_url" id="apps_url" name="apps_url" value="{{senha_salva.apps_url}}" readonly>
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="usuario" value="{{senha_salva.usuario}}" readonly>
             <label for="senha">Senha:</label>
