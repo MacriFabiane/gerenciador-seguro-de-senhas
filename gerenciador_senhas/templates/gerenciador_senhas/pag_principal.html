@@ -2,31 +2,77 @@
 {% load static %}
 
 {% block conteudo %}
-<div>
-    <title>Senhas do {{user.name}}</title>
-</div>
-<div>
-    <label for="add_senhas">Adicione uma nova senha ao gerenciador:</label>
-    <form id="add_senhas" name="add_senhas">
-        {% csrf_token %}
-        <div class="block_senha">
-            <label for="apps_url">Aplicativo ou url:</label>
-            <input type="apps_url" id="apps_url" name="apps_url">
+<div class="gerenciador-senhas">
+    <h1 class="titulo-principal">Gerenciador de Senhas</h1>
+    
+    <div class="form-adicionar">
+        <h3>Adicionar nova senha</h3>
+        <form method="POST" action=".">
+            {% csrf_token %}
+            <label for="apps_url">Aplicativo ou URL:</label>
+            <input type="text" id="apps_url" name="apps_url" required>
+            
             <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario">
+            <input type="text" id="usuario" name="usuario" required>
+            
             <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha">
+            <input type="password" id="senha" name="senha" required>
+            
+            <button type="submit" class="botao">Salvar Senha</button>
+        </form>
+    </div>
+
+    <div class="lista-senhas">
+        <h3>Suas senhas salvas</h3>
+        
+        {% for senha_salva in senhas_salvas %}
+        <div class="senha-item">
+            <label>Aplicativo/URL:</label>
+            <input type="text" value="{{ senha_salva.app_url }}" readonly>
+            
+            <label>Usuário:</label>
+            <input type="text" value="{{ senha_salva.usuario }}" readonly>
+            
+            <label>Senha:</label>
+            <div style="display: flex;">
+                <input type="password" value="{{ senha_salva.senha }}" readonly id="senha-{{ forloop.counter }}">
+                <button type="button" class="botao botao-secundario botao-mostrar" 
+                        onclick="togglePassword('senha-{{ forloop.counter }}', this)">
+                    Mostrar
+                </button>
+            </div>
+            
+            <div style="margin-top: 10px;">
+                <button class="botao botao-secundario">Editar</button>
+                <button class="botao" onclick="excluirSenha" style="background-color: #dc3545;">Excluir</button>
+            </div>
         </div>
-    </form>
-    {% for senha_salva in senhas_salvas %}
-        <div class="block_senha">
-            <label for="apps_url">Aplicativo ou url:</label>
-            <input type="apps_url" id="apps_url" name="apps_url" value="{{senha_salva.app_url}}" readonly>
-            <label for="usuario">Usuário:</label>
-            <input type="text" id="usuario" name="usuario" value="{{senha_salva.usuario}}" readonly>
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" value="{{senha_salva.senha}}" readonly>
-        </div>
-    {% endfor %}
+        {% empty %}
+        <p>Nenhuma senha cadastrada ainda.</p>
+        {% endfor %}
+    </div>
 </div>
-{%endblock%}
+
+<script>
+function togglePassword(id, button) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') {
+        input.type = 'text';
+        button.textContent = 'Ocultar';
+    } else {
+        input.type = 'password';
+        button.textContent = 'Mostrar';
+    }
+}
+
+function confirmarExclusao() {
+    return confirm("Tem certeza que deseja excluir esta senha?");
+}
+
+function excluirSenha(id) {
+    if (confirmarExclusao()) {
+        console.log("Senha com ID " + id + " excluída.");
+    }
+}
+</script>
+{% endblock %}

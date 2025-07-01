@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {%block conteudo %}
-
+<div class="container_chave-restauracao">
 <h2>Sua Recovery Key foi gerada</h2>
 <p>Guarde esta chave com segurança. Ela será <strong>exibida apenas uma vez</strong>!</p>
 
@@ -13,5 +13,5 @@
     {% csrf_token %}
     <button type="submit">Entendi, continuar</button>
 </form>
-
+</div>
 {% endblock %}

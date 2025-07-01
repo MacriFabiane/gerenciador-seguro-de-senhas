@@ -1,0 +1,107 @@
+/* Container principal - estilo similar ao .login */
+.container-chave-mestra {
+    width: 90%;
+    max-width: 400px;
+    min-height: 60vh;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    background-color: #ffffff;
+}
+
+/* Cabeçalho */
+.chave-mestra-container h2 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+/* Texto descritivo */
+.chave-mestra-container p {
+    color: #495057;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Formulário - estilo similar ao .pgLogin */
+.chave-mestra-form {
+    width: 100%;
+    max-width: 350px;
+}
+
+.chave-mestra-form .form-group {
+    margin-bottom: 20px;
+}
+
+.chave-mestra-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.chave-mestra-form input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Botão - estilo similar ao .botao */
+.chave-mestra-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.chave-mestra-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Mensagens - estilo similar ao .mensagens */
+.chave-mestra-messages {
+    width: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.chave-mestra-messages li {
+    color: red;
+    font-size: 0.875rem;
+    padding: 8px;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Link - estilo similar ao .DIRresetSenha */
+.chave-mestra-link {
+    display: block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 15px;
+}
+
+.chave-mestra-link:hover {
+    text-decoration: underline;
+}

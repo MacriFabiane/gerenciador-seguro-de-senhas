@@ -1,0 +1,161 @@
+/* Estilo principal - mantendo a identidade visual do login */
+.gerenciador-senhas {
+    width: 90%;
+    max-width: 800px;
+    min-height: 70vh;
+    font-family: Arial, sans-serif;
+    padding: 40px;
+    border-radius: 8px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+/* Cabeçalho */
+.titulo-principal {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-size: 24px;
+}
+
+/* Formulário de adição - estilo similar ao login */
+.form-adicionar {
+    padding: 25px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    border: 1px solid #e9ecef;
+}
+
+.form-adicionar label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-adicionar input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-adicionar input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Lista de senhas salvas */
+.lista-senhas {
+    margin-top: 20px;
+}
+
+.senha-item {
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #e9ecef;
+    position: relative;
+}
+
+.senha-item label {
+    display: block;
+    margin-bottom: 5px;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+.senha-item input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    background-color: white;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    color: #495057;
+}
+
+/* Botões - mantendo o estilo do login */
+.botao {
+    padding: 10px 15px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-mostrar {
+    padding: 12px 15px;
+    font-size: 14px;  
+    margin-left: 5px; 
+    height: fit-content;
+    line-height: 1;  
+}
+
+.botao:hover {
+    background-color: #0056b3;
+}
+
+.botao-secundario {
+    background-color: #6c757d;
+}
+
+.botao-secundario:hover {
+    background-color: #5a6268;
+}
+
+/* Mensagens e links */
+.mensagens {
+    margin: 15px 0;
+}
+
+.mensagens ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.mensagens li {
+    color: #dc3545;
+    font-size: 14px;
+}
+
+.links-uteis {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.links-uteis a {
+    color: #007bff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.links-uteis a:hover {
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .gerenciador-senhas {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .form-adicionar {
+        padding: 15px;
+    }
+    
+    .senha-item {
+        padding: 15px;
+    }
+}

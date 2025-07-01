@@ -1,25 +1,28 @@
 {% extends "base.html" %}
 
 {%block conteudo %}
+<div class="container-chave-mestra">
     <h2>Digite sua Chave Mestra</h2>
 
     <p>Essa chave é usada para acessar suas senhas criptografadas.</p>
 
     {% if messages %}
-        <ul>
+        <ul class="chave-mestra-messages">
             {% for message in messages %}
                 <li>{{ message }}</li>
             {% endfor %}
         </ul>
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" class="chave-mestra-form">
         {% csrf_token %}
-        <label for="chave_mestra">Chave Mestra:</label>
-        <input type="password" name="chave_mestra" id="chave_mestra" required>
+        <div class="form-group">
+            <label for="chave_mestra">Chave Mestra:</label>
+            <input type="password" name="chave_mestra" id="chave_mestra" required>
+        </div>
         <button type="submit">Confirmar</button>
     </form>
 
-    <p><a href="{% url 'recuperarChaveMestra' %}">Esqueci minha chave mestra</a></p>
-
+    <p><a href="{% url 'recuperarChaveMestra' %}" class="chave-mestra-link">Esqueci minha chave mestra</a></p>
+</div>
 {%endblock%}
