@@ -27,14 +27,14 @@
                 <label for="password2">{% trans "Confirme sua Senha" %}</label>
                 <input type="password" class="form-control" id="password2" name="password2" placeholder="{% trans 'Confirme sua senha' %}" required>
             </div>
-            {% comment %} <div class="form-group">
+            <div class="form-group">
                 <label for="mestra1">{% trans "Chave mestra" %}</label>
                 <input type="password" class="form-control" id="mestra1" name="mestra1" placeholder="{% trans 'Digite sua cahve mestra' %}" required>
             </div>
             <div class="form-group">
                 <label for="mestra2">{% trans "Confirme sua Chave mestra" %}</label>
                 <input type="password" class="form-control" id="mestra2" name="mestra2" placeholder="{% trans 'Confirme sua Chave Mestra' %}" required>
-            </div> {% endcomment %}
+            </div> 
             {{ redirect_field }}
             <div class="mensagens">
                 {% if messages %}

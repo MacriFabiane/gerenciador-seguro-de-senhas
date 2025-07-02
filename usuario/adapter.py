@@ -15,7 +15,7 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         chave2 = request.POST.get("mestra2")
 
         if not chave1 or chave1 != chave2:
-            raise ValidationError("As chaves mestras não coincidem ou estão vazias.")
+            raise ValidationError("As chaves mestras não coincidem ou estão vazias.") #tem que mandar esse erro pro front
 
         # Gerar salt, IV e chave mestra derivada
         salt = os.urandom(16)
@@ -33,6 +33,8 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         ChaveMestraUsuario.objects.create(
             usuario=user,
             chave_mestra_encriptada=chave_mestra_encriptada,
+            iv=iv,                      # salvar iv original
+            salt=salt,                  # salvar salt original
             iv_recovery=iv_rec,
             salt_recovery=salt_rec,
         )

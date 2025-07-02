@@ -13,7 +13,7 @@
         </ul>
     {% endif %}
 
-    <form method="POST">
+    <form method="POST" >
         {% csrf_token %}
         <label for="chave_mestra">Chave Mestra:</label>
         <input type="password" name="chave_mestra" id="chave_mestra" required>

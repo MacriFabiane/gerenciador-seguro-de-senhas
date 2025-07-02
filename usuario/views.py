@@ -1,15 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
-# from django.contrib.auth.tokens import default_token_generator #pra gerar token
-# from django.core.mail import send_mail #pra enviar emails
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-# from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-# from django.http import HttpResponse  #necessário pro uid
-# from django.utils.encoding import force_bytes, force_str #necessário pro uid
-# from django.urls import reverse
-# from django.template.loader import render_to_string
 from allauth.account.views import ConfirmEmailView
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -58,14 +51,15 @@ def exigirChaveMestra(request):
 
             # Testa a descriptografia com a chave derivada
             _ = descriptografar(obj.chave_mestra_encriptada, chave_derivada, obj.iv)
+            print(f"Tipo chave_mestra_encriptada: {type(obj.chave_mestra_encriptada)}")
 
             # Se der certo, salva a chave na sessão
             request.session["user_key"] = base64.b64encode(chave_derivada).decode()
             messages.success(request, "Chave mestra validada com sucesso.")
-            return redirect('pag_principal')
+            return redirect('pag_principalView')
 
-        except Exception:
-            messages.error(request, "Chave mestra incorreta. Tente novamente.")
+        except Exception as e:
+            messages.error(request, f"Chave mestra incorreta. Erro: {str(e)}")
 
     return render(request, 'usuario/exigir_chave_mestra.html')
 

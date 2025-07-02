@@ -6,5 +6,7 @@ class ChaveMestraUsuario(models.Model):
     chave_mestra_encriptada = models.BinaryField()
     iv_recovery = models.BinaryField()
     salt_recovery = models.BinaryField()
+    iv = models.BinaryField()
+    salt = models.BinaryField()
 
 

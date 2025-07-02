@@ -10,11 +10,8 @@ import base64
 def pag_principalView(request):
     user = request.user
     chave_mestra = request.session.get("user_key")
-
-    # if not chave_mestra:
-    #     return redirect("exigirChaveMestra")  # ou página de erro
-
-    chave_mestra = base64.b64decode(chave_mestra)
+    # Carregar senhas
+    senhas_salvas = []
 
     # Se for envio de nova senha
     if request.method == "POST":
@@ -24,7 +21,7 @@ def pag_principalView(request):
 
         salt = os.urandom(16)
         iv = os.urandom(16)
-        chave = gerar_chave_mestra(base64.b64encode(chave_mestra).decode(), salt)
+        chave = gerar_chave_mestra(chave_mestra, salt)
 
         senha_segura = SenhaSegura.objects.create(
             usuario_dono=user,
@@ -36,11 +33,9 @@ def pag_principalView(request):
         )
         senha_segura.save()
 
-    # Carregar senhas
-    senhas_salvas = []
     senhas = SenhaSegura.objects.filter(usuario_dono=user)
     for s in senhas:
-        chave = base64.b64decode(chave_mestra)  # já derivada
+        chave = gerar_chave_mestra(chave_mestra, s.salt)
         resultado = {
             "apps_url": descriptografar(s.apps_url, chave, s.iv),
             "usuario": descriptografar(s.usuario, chave, s.iv),
@@ -49,14 +44,6 @@ def pag_principalView(request):
         senhas_salvas.append(resultado)
     return render(request, 'gerenciador_senhas/pag_principal.html', {'user': user, 'senhas_salvas': senhas_salvas})
 
-    # return render(request, 'gerenciador_senhas/pag_principal.html', {
-    # 'user': {'name':'Maria'},
-    # 'senhas_salvas': [
-    #     {'apps_url': 'https://facebook.com', 'usuario': 'maria_fb', 'senha': 'senha_fb123'},
-    #     {'apps_url': 'https://gmail.com', 'usuario': 'maria.gm', 'senha': 'senha_gmail!'},
-    #     {'apps_url': 'https://linkedin.com', 'usuario': 'maria_li', 'senha': 'senhaLinkedin2024'},
-    #     {'apps_url': 'https://github.com', 'usuario': 'maria_git', 'senha': '1234segura'},
-    # ]})
 
 def pag_edicaoView(request):
     return render(request, 'gerenciador_senhas/pag_edicao.html')

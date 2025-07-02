@@ -65,7 +65,7 @@ MIDDLEWARE = [
     'session_security.middleware.SessionSecurityMiddleware', #para logout por tempo
 ]
 
-DEFAULT_FROM_EMAIL = 'brunosilva.2022@alunos.utfpr.edu.br'  # E-mail do remetente
+DEFAULT_FROM_EMAIL = 'sampi-pb@utfpr.edu.br'  # E-mail do remetente
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')  # e-mail 
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # Senha email
@@ -161,7 +161,7 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/usuarios/chave_mestra/' 
+LOGIN_REDIRECT_URL = '/usuarios/chave_mestra' 
 ACCOUNT_SIGNUP_REDIRECT_URL = '/usuarios/login/'
 ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/pagina_principal/'
 ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/usuarios/chave_restauracao'
@@ -177,4 +177,4 @@ SESSION_SECURITY_WARN_AFTER = 1500  # 15 minutos, avisa antes do logout
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SECURITY_REDIRECT_URL = "/usuarios/login/"  # Página para onde o usuário será redirecionado
 
-#ACCOUNT_ADAPTER = 'usuario.adapter.CustomAccountAdapter'
+ACCOUNT_ADAPTER = 'usuario.adapter.CustomAccountAdapter'

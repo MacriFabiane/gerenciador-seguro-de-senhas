@@ -34,6 +34,7 @@ def descriptografar(dado_cript: bytes, chave: bytes, iv: bytes) -> str:
     pad = dados[-1]
     return dados[:-pad].decode()
 
+
 def gerar_recovery_key():
     return base64.urlsafe_b64encode(os.urandom(24)).decode()  # ex: 32 chars
 
