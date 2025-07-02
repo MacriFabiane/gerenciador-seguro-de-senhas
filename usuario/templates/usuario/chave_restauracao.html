@@ -1,17 +1,19 @@
 {% extends "base.html" %}
+{% block conteudo %}
 
-{%block conteudo %}
-<div class="container_chave-restauracao">
-<h2>Sua Recovery Key foi gerada</h2>
-<p>Guarde esta chave com segurança. Ela será <strong>exibida apenas uma vez</strong>!</p>
+<div class="container_chave_restauracao">
+    <h2>Sua Recovery Key foi gerada</h2>
+    <p>Guarde esta chave com segurança. Ela será <strong>exibida apenas uma vez</strong>!</p>
 
-<pre>{{ recovery_key }}</pre>
+    <pre>{{ recovery_key }}</pre>
 
-<p><strong>Importante:</strong> Se você perder esta recovery key, não poderá recuperar suas senhas caso esqueça sua chave mestra.</p>
-
-<form method="POST" action="{% url 'account_login' %}">
-    {% csrf_token %}
-    <button type="submit">Entendi, continuar</button>
-</form>
+    <p><strong>Importante:</strong> Se você perder esta recovery key, não poderá recuperar suas senhas caso esqueça sua chave mestra.</p>
+    
+    <div class="chave_restauracao_form">
+        <form method="POST" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            <button type="submit">Continuar</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

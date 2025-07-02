@@ -6,7 +6,7 @@
 {% block conteudo %}
 <div class="cadastro">
     <div class="img-cadastro">
-        <img class="logoCentral" src="{% static 'imagens/logoSampi.png' %}" alt="Logo SAMPI" width="450px">
+        <img class="logoCentral" src="{% static 'imagens/logo_seguranca.png' %}" alt="Logo SAMPI" width="150px">
     </div>
     <div class="pgCadastro">
         <form class="px-4 py-3" method="POST" action="{% url 'account_signup' %}">
@@ -21,19 +21,28 @@
             </div>
             <div class="form-group">
                 <label for="password1">{% trans "Senha" %}</label>
-                <input type="password" class="form-control" id="password1" name="password1" placeholder="{% trans 'Digite sua senha' %}" required>
+                <input type="password" class="form-control" id="password1" name="password1" required>
             </div>
+
             <div class="form-group">
                 <label for="password2">{% trans "Confirme sua Senha" %}</label>
-                <input type="password" class="form-control" id="password2" name="password2" placeholder="{% trans 'Confirme sua senha' %}" required>
+                <input type="password" class="form-control" id="password2" name="password2" required>
+                {% if 'password2' in form.errors %}
+                    <div class="error-message">{{ form.errors.password2|join:", " }}</div>
+                {% endif %}
             </div>
+
             <div class="form-group">
                 <label for="mestra1">{% trans "Chave mestra" %}</label>
-                <input type="password" class="form-control" id="mestra1" name="mestra1" placeholder="{% trans 'Digite sua cahve mestra' %}" required>
+                <input type="password" class="form-control" id="mestra1" name="mestra1" required>
             </div>
+
             <div class="form-group">
                 <label for="mestra2">{% trans "Confirme sua Chave mestra" %}</label>
-                <input type="password" class="form-control" id="mestra2" name="mestra2" placeholder="{% trans 'Confirme sua Chave Mestra' %}" required>
+                <input type="password" class="form-control" id="mestra2" name="mestra2" required>
+                {% if 'mestra2' in form.errors %}
+                    <div class="error-message">{{ form.errors.mestra2|join:", " }}</div>
+                {% endif %}
             </div>
             {{ redirect_field }}
             <div class="mensagens">
@@ -44,18 +53,18 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <p style="color: red;">{% trans error %}</p>
-                    {% endfor %}
-                {% endfor %}
+                
                 {% if form.non_field_errors %}
-                    <p style="color: red;">{% trans form.non_field_errors %}</p>
+                    <div class="error-message">
+                        {{ form.non_field_errors|join:", " }}
+                    </div>
                 {% endif %}
             </div>
+            
             <button type="submit" class="btn btn-primary botao">{% trans "Cadastrar" %}</button>
         </form>
-        <a class="dropdown-item DIRlogin" href="{% url 'account_login' %}">{% trans "Já possui uma conta? Faça login aqui." %}</a></br>
+        
+        <a class="dropdown-item DIRlogin" href="{% url 'account_login' %}">{% trans "Já possui uma conta? Faça login aqui." %}</a>
     </div>
 </div>
 

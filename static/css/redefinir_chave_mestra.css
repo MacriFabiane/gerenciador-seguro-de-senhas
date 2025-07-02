@@ -1,0 +1,95 @@
+.container-nova-chave {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-nova-chave h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.container-nova-chave p {
+    color: #495057;
+    margin-bottom: 25px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.container-nova-chave form {
+    margin-top: 30px;
+}
+
+.container-nova-chave label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.container-nova-chave input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.container-nova-chave input[type="password"]:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+.container-nova-chave button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.container-nova-chave button:hover {
+    background-color: #0056b3;
+}
+
+.container-nova-chave ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.container-nova-chave ul li {
+    color: #dc3545;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 480px) {
+    .container-nova-chave {
+        padding: 25px;
+        margin: 30px auto;
+    }
+    
+    .container-nova-chave h2 {
+        font-size: 1.5rem;
+    }
+}

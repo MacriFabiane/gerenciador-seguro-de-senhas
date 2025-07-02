@@ -8,17 +8,19 @@
     <link rel="icon" href="{% static 'imagens/logoUTF64X32.png' %}" type="image/png">
     <title>SAMPI</title>
 </head>
-<body>
-    {%if request.resolver_match.view_name != 'account_login'%}
-        {%include 'parciais/_navbar.html'%}
-    {%endif%}
-    {% comment %} para logout por inatividade {% endcomment %}
-    {% include 'session_security/all.html' %}
-    <div class="container espaco_baseNav">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                {%block conteudo%} 
-                {%endblock%}
+<body class="pagina-centralizada">
+    <div class="container-principal">
+        {%if request.resolver_match.view_name != 'account_login'%}
+            {%include 'parciais/_navbar.html'%}
+        {%endif%}
+        {% comment %} para logout por inatividade {% endcomment %}
+        {% include 'session_security/all.html' %}
+        <div class="container espaco_baseNav">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    {%block conteudo%} 
+                    {%endblock%}
+                </div>
             </div>
         </div>
     </div>

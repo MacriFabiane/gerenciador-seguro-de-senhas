@@ -176,3 +176,5 @@ SESSION_SECURITY_EXPIRE_AFTER = 1800 #30 min
 SESSION_SECURITY_WARN_AFTER = 1500  # 15 minutos, avisa antes do logout
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SECURITY_REDIRECT_URL = "/usuarios/login/"  # Página para onde o usuário será redirecionado
+
+ACCOUNT_ADAPTER = 'usuario.adapter.CustomAccountAdapter'
