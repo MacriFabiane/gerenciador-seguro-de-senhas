@@ -55,3 +55,9 @@ def criptografar_chave_mestra(chave_mestra: bytes, chave_recovery: bytes, iv: by
     chave_padded = chave_mestra + bytes([pad] * pad)
     return encryptor.update(chave_padded) + encryptor.finalize()
 
+def descriptografar_chave_mestra(chave_criptografada: bytes, chave: bytes, iv: bytes) -> bytes:
+    cipher = Cipher(algorithms.AES(chave), modes.CBC(iv), backend=backend)
+    decryptor = cipher.decryptor()
+    dados = decryptor.update(chave_criptografada) + decryptor.finalize()
+    pad = dados[-1]
+    return dados[:-pad]

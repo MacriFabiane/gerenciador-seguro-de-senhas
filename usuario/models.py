@@ -8,5 +8,6 @@ class ChaveMestraUsuario(models.Model):
     salt_recovery = models.BinaryField()
     iv = models.BinaryField()
     salt = models.BinaryField()
-
+    dado_teste_criptografado = models.BinaryField()
+    dado_teste2_criptografado = models.BinaryField()
 

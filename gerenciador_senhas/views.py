@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import SenhaSegura
 from utils.crypto import derivar_chave_da_recovery, descriptografar, gerar_chave_mestra, criptografar, criptografar_chave_mestra
@@ -7,6 +8,7 @@ import os
 import base64
 
 @csrf_protect
+@login_required
 def pag_principalView(request):
     user = request.user
     chave_mestra = request.session.get("user_key")
@@ -44,6 +46,6 @@ def pag_principalView(request):
         senhas_salvas.append(resultado)
     return render(request, 'gerenciador_senhas/pag_principal.html', {'user': user, 'senhas_salvas': senhas_salvas})
 
-
+@login_required
 def pag_edicaoView(request):
     return render(request, 'gerenciador_senhas/pag_edicao.html')

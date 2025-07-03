@@ -2,7 +2,7 @@ from allauth.account.adapter import DefaultAccountAdapter
 from django.forms import ValidationError
 from django.contrib.auth.models import User
 from .models import ChaveMestraUsuario
-from utils.crypto import gerar_chave_mestra, gerar_recovery_key, criptografar_chave_mestra
+from utils.crypto import gerar_chave_mestra, gerar_recovery_key, criptografar_chave_mestra, criptografar
 import os
 
 class CustomAccountAdapter(DefaultAccountAdapter):
@@ -21,14 +21,17 @@ class CustomAccountAdapter(DefaultAccountAdapter):
         salt = os.urandom(16)
         iv = os.urandom(16)
         chave_gerada = gerar_chave_mestra(chave1, salt)
+        dado_teste = 'Teste'  # Codifica explicitamente
+        dado_teste_criptografado = criptografar(dado_teste, chave_gerada, iv)
 
         # Gerar dados de recuperação
         recovery_key = gerar_recovery_key()
         salt_rec = os.urandom(16)
         iv_rec = os.urandom(16)
         chave_rec = gerar_chave_mestra(recovery_key, salt_rec)
+        dado_teste2 = 'Teste'
         chave_mestra_encriptada = criptografar_chave_mestra(chave_gerada, chave_rec, iv_rec)
-
+        dado_teste2_criptografado = criptografar(dado_teste2, chave_rec, iv_rec)
         # Salvar a chave no banco
         ChaveMestraUsuario.objects.create(
             usuario=user,
@@ -37,6 +40,8 @@ class CustomAccountAdapter(DefaultAccountAdapter):
             salt=salt,                  # salvar salt original
             iv_recovery=iv_rec,
             salt_recovery=salt_rec,
+            dado_teste_criptografado=dado_teste_criptografado,
+            dado_teste2_criptografado = dado_teste2_criptografado,
         )
 
         # Salvar recovery_key na sessão para exibir
