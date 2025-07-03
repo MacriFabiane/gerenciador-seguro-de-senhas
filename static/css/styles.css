@@ -1,0 +1,71 @@
+/* ===== ESTILOS GERAIS DE CENTRALIZAÇÃO ===== */
+/* Aplica a todos os templates que estendem base.html */
+
+/* Estrutura básica de centralização */
+.pagina-centralizada {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 50px;
+}
+
+/* Container principal que centraliza o conteúdo */
+.container-principal {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    flex: 1;
+}
+
+/* Container de conteúdo centralizado (para forms, cards, etc) */
+.conteudo-centralizado {
+    width: 100%;
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Centralização de elementos internos */
+.conteudo-centralizado > * {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 85%;
+}
+
+/* Tipografia básica centralizada */
+.conteudo-centralizado h1,
+.conteudo-centralizado h2,
+.conteudo-centralizado h3,
+.conteudo-centralizado p {
+    text-align: center;
+}
+
+/* Formulários centralizados */
+.formulario-centralizado {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+
+/* Botões centralizados */
+.botao-centralizado {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .conteudo-centralizado {
+        padding: 1.5rem;
+        margin: 1rem auto;
+    }
+    
+    .conteudo-centralizado > * {
+        max-width: 95%;
+    }
+}

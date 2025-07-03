@@ -6,7 +6,7 @@
 {% block conteudo %}
 <div class="login">
   <div class="img-login">
-    <img class="logoCentral" src="{% static 'imagens/logo.jpg' %}" alt="Logo MB" width="150px">
+    <img class="logoCentral" src="{% static 'imagens/logo_seguranca.png' %}" alt="Logo MB" width="150px">
   </div>
   <div class="forms-login">
     <div class="pgLogin">
@@ -14,7 +14,7 @@
         <form class="px-4 py-3" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           <div class="form-group">
-            <label for="LOGIN">{% trans "LOGIN" %}</label>
+            <label for="LOGIN" class="label_login">{% trans "Login" %}</label>
             <input type="text" class="form-control" id="username" name="login" placeholder="{% trans 'Usuário' %}">
           </div>
           <div class="form-group">

@@ -1,0 +1,39 @@
+.cadastro {
+  width: 90%;
+  max-width: 400px;
+  min-height: 70vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+              0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin: 20px auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  gap: 30px;
+}
+
+.img-cadastro {
+    margin-bottom: 30px;
+}
+
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-size: 0.875rem;
+    border: 1px solid #f5c6cb;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.pgCadastro{
+    margin-top: 10px;
+}

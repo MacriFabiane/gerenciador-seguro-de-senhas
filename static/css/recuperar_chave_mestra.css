@@ -1,0 +1,100 @@
+.recovery-container {
+    width: 90%;
+    max-width: 400px;
+    min-height: 500px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 
+                0 6px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    box-sizing: border-box;
+}
+
+.recovery-container h2 {
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-size: 20px;
+    text-align: center;
+    font-size: 28.8px; 
+}
+
+.recovery-container p {
+    color: #495057;
+    margin-bottom: 25px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.recovery-form {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.recovery-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #495057;
+}
+
+.recovery-form input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.recovery-form button {
+    width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.recovery-form button:hover {
+    background-color: #0056b3;
+}
+
+.recovery-messages {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto 20px;
+    list-style-type: none;
+    padding: 0;
+}
+
+.recovery-messages li {
+    color: #dc3545;
+    font-size: 0.875rem;
+    padding: 8px;
+    background-color: #f8d7da;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    border: 1px solid #f5c6cb;
+}
+
+.recovery-link {
+    display: block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+.recovery-link:hover {
+    text-decoration: underline;
+}
