@@ -7,7 +7,7 @@
     
     <div class="form-adicionar">
         <h3>Adicionar nova senha</h3>
-        <form method="POST" action=".">
+        <form method="POST">
             {% csrf_token %}
             <label for="apps_url">Aplicativo ou URL:</label>
             <input type="text" id="apps_url" name="apps_url" required>
@@ -28,7 +28,7 @@
         {% for senha_salva in senhas_salvas %}
         <div class="senha-item">
             <label>Aplicativo/URL:</label>
-            <input type="text" value="{{ senha_salva.app_url }}" readonly>
+            <input type="text" value="{{ senha_salva.apps_url }}" readonly>
             
             <label>Usuário:</label>
             <input type="text" value="{{ senha_salva.usuario }}" readonly>
@@ -41,11 +41,11 @@
                     Mostrar
                 </button>
             </div>
-            
+{% comment %}             
             <div style="margin-top: 10px;">
                 <button class="botao botao-secundario">Editar</button>
                 <button class="botao" onclick="excluirSenha" style="background-color: #dc3545;">Excluir</button>
-            </div>
+            </div> {% endcomment %}
         </div>
         {% empty %}
         <p>Nenhuma senha cadastrada ainda.</p>
@@ -65,7 +65,7 @@ function togglePassword(id, button) {
     }
 }
 
-function confirmarExclusao() {
+{% comment %} function confirmarExclusao() {
     return confirm("Tem certeza que deseja excluir esta senha?");
 }
 
@@ -73,6 +73,6 @@ function excluirSenha(id) {
     if (confirmarExclusao()) {
         console.log("Senha com ID " + id + " excluída.");
     }
-}
+} {% endcomment %}
 </script>
 {% endblock %}

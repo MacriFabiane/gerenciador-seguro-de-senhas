@@ -96,16 +96,16 @@ WSGI_APPLICATION = 'gerenciador.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': config('BD_NAME'),
-#         'USER': config('BD_USER'),
-#         'PASSWORD': config('BD_PASSWORD'),
-#         'HOST': config('BD_HOST'),
-#         'PORT': config('BD_PORT'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('BD_NAME'),
+        'USER': config('BD_USER'),
+        'PASSWORD': config('BD_PASSWORD'),
+        'HOST': config('BD_HOST'),
+        'PORT': config('BD_PORT'),
+    }
+}
 
 AUTHENTICATION_BACKENDS = [
     
